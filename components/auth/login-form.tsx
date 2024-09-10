@@ -18,8 +18,7 @@ import {
 import { Input } from "../ui/input";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-
-
+import { login } from "@/actions/login";
 
 export const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -40,8 +39,10 @@ export const LoginForm = () => {
     setSuccess("");
 
     startTransition(() => {
-      console.log("Submitting...");
-      
+      login(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
     });
   };
 

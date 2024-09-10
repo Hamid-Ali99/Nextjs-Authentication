@@ -18,6 +18,7 @@ import {
 import { Input } from "../ui/input";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import { register } from "@/actions/register";
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -39,7 +40,10 @@ export const RegisterForm = () => {
     setSuccess("");
 
     startTransition(() => {
-      console.log(values);
+      register(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
     });
   };
 
