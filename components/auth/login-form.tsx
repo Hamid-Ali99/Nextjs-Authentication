@@ -1,5 +1,6 @@
 "use client";
 import * as z from "zod";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
@@ -94,7 +95,15 @@ export const LoginForm = () => {
                       disabled={isPending}
                     />
                   </FormControl>
-                  <FormMessage></FormMessage>
+                  <Button
+                    size="sm"
+                    variant="link"
+                    asChild
+                    className="px-0 font-normal flex justify-end"
+                  >
+                    <Link href="/auth/reset">Forgot password?</Link>
+                  </Button>
+                  <FormMessage />
                 </FormItem>
               )}
             />
